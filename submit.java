@@ -3,6 +3,7 @@ package co.shrey.fireapp;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,9 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by shrey on 01-06-2018.
- */
+
 
 public class submit extends AppCompatActivity {
     private static final String TAG = "submit";
@@ -29,7 +28,8 @@ public class submit extends AppCompatActivity {
     ArrayList<UserInformation> list;
     /*ArrayAdapter <UserInformation> adapter;*/
     RecyclerView recyclerView;
-    RecyclerView.LayoutManager mLayoutmanager;
+    LinearLayoutManager mLayoutmanager;
+    DividerItemDecoration dividerItemDecoration;
     Adapter madapter;
     UserInformation userInfo;
     TextView name_tv,address_tv,age_tv;
@@ -66,8 +66,11 @@ public class submit extends AppCompatActivity {
                 }
                 madapter = new Adapter(list);
                 mLayoutmanager = new LinearLayoutManager(submit.this);
+                dividerItemDecoration = new DividerItemDecoration(submit.this, mLayoutmanager.getOrientation());
                 recyclerView.setLayoutManager(mLayoutmanager);
+                recyclerView.addItemDecoration(dividerItemDecoration);
                 recyclerView.setAdapter(madapter);
+
 
             }
             @Override
